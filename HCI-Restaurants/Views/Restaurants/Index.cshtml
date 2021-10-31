@@ -1,0 +1,134 @@
+﻿@model IEnumerable<HCI_Restaurants.Models.Restaurants>
+
+@{
+    ViewData["Title"] = "The Restaurants Hub";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <div class="dropdown" style="float:left; width:auto;">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Sort By
+        </button>
+        <ul class="dropdown-menu dropdown-content">
+            <li>
+                <a tabindex="-1" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">Name A-Z</a>
+            </li>
+            <li>
+                <a tabindex="-1" asp-action="Index" asp-route-sortOrder="@ViewData["CuisineSortParm"]">Cuisine Type</a>
+            </li>
+            <li class="dropdown-submenu">
+                <a class="test btn-link dropdown-toggle" data-toggle="dropdown" href="#">Services<span class="caret"></span></a>
+                <ul class="dropdown-menu dropdown-content">
+                    <li>
+                        <a tabindex="-1" asp-action="Index" asp-route-sortOrder="@ViewData["DeliverySortParm"]">Delivery</a>
+                    </li>
+                    <li>
+                        <a tabindex="-1" asp-action="Index" asp-route-sortOrder="@ViewData["TakeawaySortParm"]">Takeaway</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div style="float:right; width:auto; text-align:right">
+        @using (Html.BeginForm())
+        {
+            <p>
+                @Html.TextBox("SearchString")
+                <input type="submit" value="Search" />
+            </p>
+        }
+    </div>
+</div>
+<div class="text-break">
+    <br />
+    <br />
+    <br />
+</div>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-lg-6 mb-4">
+                <div class="card" style="background-color: papayawhip">
+                    <img class="card-img-top" src="" alt="" />
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.Cuisines)
+                        </p>
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </p>
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.StateCode) @Html.DisplayFor(modelItem => item.ZipCode)
+
+                        </p>
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.RatingText)
+                        </p>
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.Telephone)
+                        </p>
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.Reviews)
+                        </p>
+
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a> |
+                        <a asp-action="Details" asp-controller="Covid19" asp-route-id="@item.Id" class="btn btn-dark">Delivery</a> 
+                        <a asp-action="Index" asp-controller="Reviews" asp-route-id="@item.Id" class="btn btn-success float-right">Reviews</a>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.dropdown-submenu a.test').on("click", function (e) {
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
+    });
+</script>
+
+<style>
+    .dropdown-submenu {
+        position: relative;
+    }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+        }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        /*overflow: auto;*/ /*Removed for better visualization*/
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+    .dropdown a:hover {
+        background-color: #ddd;
+    }
+</style>
+

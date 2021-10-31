@@ -1,0 +1,62 @@
+﻿@model IEnumerable<HCI_Restaurants.Models.Reviews>
+
+@{
+    ViewData["Title"] = "Reviews";
+}
+
+<h1>@ViewBag.Name</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">Create Review</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                Review
+            </th>
+            <th>
+                Summary
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Customer
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewTimeFriendly)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+          
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index" asp-controller="Restaurants" class="btn btn-primary">Back to Restaurants</a>
+</div>
+
+

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<HCI_Restaurants.Models.Covid19>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TakeOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LimitSeating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IndoorDining)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Curbside)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Restaurant)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TakeOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LimitSeating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndoorDining)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Curbside)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restaurant.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

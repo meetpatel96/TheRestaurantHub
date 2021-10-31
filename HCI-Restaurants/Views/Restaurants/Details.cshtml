@@ -1,0 +1,42 @@
+﻿@model HCI_Restaurants.Models.Restaurants
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Model.Name</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Establishment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Establishment)
+        </dd>
+        <dt class = "col-sm-2">
+            @*@Html.DisplayNameFor(model => model.HasDelivery)*@
+            Delivery
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HasDelivery)
+        </dd>
+        <dt class = "col-sm-2">
+            @*@Html.DisplayNameFor(model => model.HasTakeaway)*@
+            Take Away
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HasTakeaway)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Timings)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Timings)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back to Restaurants</a>
+</div>
